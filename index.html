@@ -1,0 +1,385 @@
+<!DOCTYPE hvtml>
+<html lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+<title>StreamVoice: Streamable Context-Aware Language Modeling for Real-time Zero-Shot Voice Conversion</title>
+<meta name="generator" content="Jekyll v3.9.0">
+<meta property="og:title" content="TODO: title">
+<meta property="og:locale" content="en_US">
+<link rel="canonical" href="https://github.com/Anonymous-site/zslvc-lm.github.io//">
+<meta property="og:url" content="https://github.com/Anonymous-site/zslvc-lm.github.io//">
+<meta name="twitter:card" content="summary">
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body data-new-gr-c-s-check-loaded="14.1001.0" data-gr-ext-installed="">
+    <section class="page-header">
+    <!-- <h1 class="project-name">Demo PAGE</h1> -->
+    <!-- <h2 class="project-tagline"></h2> -->
+      
+      
+    </section>
+
+<section class="main-content">
+    <h1 id=""><center>StreamVoice: Streamable Context-Aware Language Modeling for Real-time Zero-Shot Voice Conversion</center></h1>
+    <center> Zhichao Wang<sup>1</sup>, Yuanzhe Chen<sup>2</sup>, Xinsheng Wang<sup>1</sup>, Zhuo Chen <sup>2</sup>, Lei Xie<sup>1</sup>, Yuping Wang<sup>2</sup>, Yuxuan Wang<sup>2</sup> </center>
+    <center> <sup>1</sup> Audio, Speech and Language Processing Group (ASLP@NPU), School of Computer Science, Northwestern Polytechnical University, Xi'an, China</center>
+    <center> <sup>2</sup> Speech, Audio, and Music Intelligence (SAMI) Group, ByteDance Inc., Shanghai, China</center>
+
+<h2>Contents</h2>
+<ul>
+  <li><a href="#abstract">Abstract</a></li>
+  <li><a href="#ID">Demo: Zero-shot Results</a></li>
+  <!-- <li><a href="#MD-SI">Evaluation</li> -->
+  </li>
+
+</ul>
+
+<h2 id="abstract">Abstract<a name="abstract"></a></h2>
+<p>Recent language model (LM) advancements have showcased impressive zero-shot voice conversion (VC) performance. However, existing LM-based VC models usually apply offline conversion from source semantics to acoustic features, demanding the complete source speech, and limiting their deployment to real-time applications. In this paper, we introduce StreamVoice, a novel streaming LM-based model for zero-shot VC, facilitating real-time conversion given arbitrary speaker prompts and source speech. Specifically, to enable streaming capability, StreamVoice employs a fully causal context-aware LM with a temporal-independent acoustic predictor, while alternately processing semantic and acoustic features at each time step of autoregression, which eliminates the dependence on complete source speech. To address the potential performance degradation from the incomplete context in streaming processing, we enhance the context-awareness of the LM through two strategies: 1) teacher-guided context foresight, using a teacher model to summarize the present and future semantic context during training to guide the model's forecasting for missing context; 2) semantic masking strategy, promoting acoustic prediction from preceding corrupted semantic and acoustic input, enhancing context-learning ability. Notably, StreamVoice is the first LM-based streaming zero-shot VC model without any future look-ahead. Experimental results demonstrate StreamVoice's streaming conversion capability while maintaining zero-shot performance comparable to non-streaming VC systems.</p>
+<br><br>
+
+<!-- <center><img src='fig/recog-sys_v2.jpg' width=400px></center> -->
+<center>
+<tr>
+  <!-- <td style="text-align: center; width: 200px;" rowspan=2 colspan=2><img src='fig /framework.jpg' width=500px></td> -->
+  <td style="text-align: center; width: 200px;" rowspan=1><img src='fig/recog-sys_v2.jpg' width=500px></td>
+  <td style="text-align: center; width: 200px;" rowspan=1><img src='fig/framework_01.jpg' width=400px></td>
+    <!-- <td style="text-align: center; width: 200px;" rowspan=1><img src='fig/codec_pre.jpg' width=500px></td> -->
+</tr>
+</center>
+
+
+<h2>Demo: Zero-shot Results <a name="ID"></a></h2>
+<blockquote>
+  Zero-shot VC demos for speakers collected from the speech corpus and internet.
+</blockquote>
+<table>
+  <tbody>
+    <tr>
+        <td style="text-align: center; width: 300px;" rowspan=1><strong>Target Speaker<strong></td>
+          <td style="text-align: center; width: 300px;" rowspan=1><strong>Target Speaker (Codec)<strong></td>
+      <td style="text-align: center; width: 300px;" rowspan=1><strong>Source Speech<strong></td>
+      <td style="text-align: center; width: 300px;" colspan=1><strong>StreamVoice<strong></td>
+        <!-- <td style="text-align: center; width: 200px;" colspan=2><strong>Abalation<strong></td> -->
+    </tr>
+    <!-- <tr>
+      <td style="text-align: center; width: 200px;" rowspan=1><strong>YourTTS<strong></td>
+      <td style="text-align: center; width: 200px;" rowspan=1><strong>AudioLM-VC<strong></td>
+      <td style="text-align: center; width: 200px;" rowspan=1><strong>LM-VC (Proposed)<strong></td>
+      <td style="text-align: center; width: 200px;" rowspan=1><strong>w/o MPLM<strong></td>
+      <td style="text-align: center; width: 200px;" rowspan=1><strong>w/o ELM</strong><strong></td>
+    </tr> -->
+    <tr>
+        <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk/00011008_00000001.wav"></audio></td>
+        <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk-codec/00011008_00000001.wav"></audio></td>
+        <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Source/00013664_00000003.wav"></audio></td>
+        <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/StreamVoice/00011008_00000001_00013664_00000003.wav"></audio></td>
+    </tr>
+
+    <tr>
+      <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk/00011063_00000001.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk-codec/00011063_00000001.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Source/F18_01.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/StreamVoice/00011063_00000001_F18_01.wav"></audio></td>
+  </tr>
+
+  <tr>
+    <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk/00019809_00000001.wav"></audio></td>
+    <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk-codec/00019809_00000001.wav"></audio></td>
+    <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Source/M07-01.wav"></audio></td>
+    <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/StreamVoice/00019809_00000001_M07-01.wav"></audio></td>
+</tr>
+
+
+<tr>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk/00020170_00000001.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk-codec/00020170_00000001.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Source/VCF1_070005.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/StreamVoice/00020170_00000001_VCF1_070005.wav"></audio></td>
+</tr>
+
+<tr>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk/030_001.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk-codec/030_001.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Source/00013664_00000002.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/StreamVoice/030_001_00013664_00000002.wav"></audio></td>
+</tr>
+
+
+<tr>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk/040_001.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk-codec/040_001.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Source/MF6_MAN_0078_0.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/StreamVoice/040_001_MF6_MAN_0078_0.wav"></audio></td>
+</tr>
+
+
+
+<tr>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk/050_002.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk-codec/050_002.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Source/VCM1_070003.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/StreamVoice/050_002_VCM1_070003.wav"></audio></td>
+</tr>
+
+
+<tr>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk/SR_chapter2_1_jingyuan_102.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk-codec/SR_chapter2_1_jingyuan_102.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Source/F23-V2_03.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/StreamVoice/SR_chapter2_1_jingyuan_102_F23-V2_03.wav"></audio></td>
+</tr>
+
+
+<tr>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk/SR_side2_yq1_jingliu_114.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk-codec/SR_side2_yq1_jingliu_114.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Source/VCF1_070003.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/StreamVoice/SR_side2_yq1_jingliu_114_VCF1_070003.wav"></audio></td>
+</tr>
+
+
+
+
+<tr>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk/F14_01.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk-codec/F14_01.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Source/M15-01.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/StreamVoice/F14_01_M15-01.wav"></audio></td>
+</tr>
+
+
+<tr>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk/M06_03.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk-codec/M06_03.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Source/VCM1_070005.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/StreamVoice/M06_03_VCM1_070005.wav"></audio></td>
+</tr>
+
+
+
+<tr>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk/F17-01.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk-codec/F17-01.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Source/M06_01.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/StreamVoice/F17-01_M06_01.wav"></audio></td>
+</tr>
+
+
+<tr>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk/M07-01.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk-codec/M07-01.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Source/F27_02.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/StreamVoice/M07-01_F27_02.wav"></audio></td>
+</tr>
+
+<tr>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk/F19_01.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk-codec/F19_01.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Source/00013664_00000007.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/StreamVoice/F19_01_00013664_00000007.wav"></audio></td>
+</tr>
+
+<tr>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk/M13_01.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk-codec/M13_01.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Source/VCF1_070004.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/StreamVoice/M13_01_VCF1_070004.wav"></audio></td>
+</tr>
+<tr>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk/F22_01.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk-codec/F22_01.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Source/M21_01.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/StreamVoice/F22_01_M21_01.wav"></audio></td>
+</tr>
+<tr>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk/M15_02.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk-codec/M15_02.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Source/M21-01.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/StreamVoice/M15_02_M21-01.wav"></audio></td>
+</tr>
+<tr>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk/F23-V2_01.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk-codec/F23-V2_01.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Source/M06_03.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/StreamVoice/F23-V2_01_M06_03.wav"></audio></td>
+</tr>
+<tr>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk/M19-01.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk-codec/M19-01.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Source/VCM1_070003.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/StreamVoice/M19-01_VCM1_070003.wav"></audio></td>
+</tr>
+
+
+<tr>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk/MF1_MAN_0001_0.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk-codec/MF1_MAN_0001_0.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Source/F18_01.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/StreamVoice/MF1_MAN_0001_0_F18_01.wav"></audio></td>
+</tr>
+
+<tr>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk/MM1_MAN_0001_0.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk-codec/MM1_MAN_0001_0.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Source/F23-V2_03.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/StreamVoice/MM1_MAN_0001_0_F23-V2_03.wav"></audio></td>
+</tr>
+
+<tr>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk/MF2_MAN_0001_0.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk-codec/MF2_MAN_0001_0.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Source/VCM1_070001.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/StreamVoice/MF2_MAN_0001_0_VCM1_070001.wav"></audio></td>
+</tr>
+
+<tr>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk/MM2_MAN_0001_0.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk-codec/MM2_MAN_0001_0.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Source/M06_03.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/StreamVoice/MM2_MAN_0001_0_M06_03.wav"></audio></td>
+</tr>
+
+
+<tr>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk/MF3_MAN_0001_0.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk-codec/MF3_MAN_0001_0.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Source/F27-01.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/StreamVoice/MF3_MAN_0001_0_F27-01.wav"></audio></td>
+</tr>
+
+<tr>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk/MM3_MAN_0014_0.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk-codec/MM3_MAN_0014_0.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Source/M21-03.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/StreamVoice/MM3_MAN_0014_0_M21-03.wav"></audio></td>
+</tr>
+
+<tr>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk/MM4_MAN_0001_0.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk-codec/MM4_MAN_0001_0.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Source/VCM1_070003.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/StreamVoice/MM4_MAN_0001_0_VCM1_070003.wav"></audio></td>
+</tr>
+
+
+
+<tr>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk/MF4_MAN_0001_0.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk-codec/MF4_MAN_0001_0.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Source/M21_01.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/StreamVoice/MF4_MAN_0001_0_M21_01.wav"></audio></td>
+</tr>
+
+
+
+<tr>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk/luo_01.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk-codec/luo_01.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Source/VCF1_070002.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/StreamVoice/luo_01_VCF1_070002.wav"></audio></td>
+</tr>
+
+<tr>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk/lzl_112001.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk-codec/lzl_112001.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Source/M06_02.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/StreamVoice/lzl_112001_M06_02.wav"></audio></td>
+</tr>
+
+
+
+
+  </tbody>
+</table>
+
+
+
+<h2>Results (Training on WenetSpeech) <a name="MD-LR"></a></h2>
+<blockquote>
+  Work in progress. Coming soon...
+  </blockquote>
+
+<!-- <blockquote>
+  Speaker From Testset
+</blockquote>
+<table>
+  <tbody>
+    <tr>
+        <td style="text-align: center; width: 200px;" rowspan=1><strong>Target Speaker Prompt<strong></td>
+      <td style="text-align: center; width: 200px;" rowspan=1><strong>Source Speech<strong></td>
+      <td style="text-align: center; width: 200px;"  rowspan=1><strong>LM-VC (Proposed)<strong></td>
+    </tr>
+    <tr>
+        <td style="text-align: center"><audio style="width: 200px;" controls="" preload="none" src="sample/spk/bdl_arctic_a0006_EF7_ENG_0085_0.wav"></audio></td>
+        <td style="text-align: center"><audio style="width: 200px;" controls="" preload="none" src="sample/source/bdl_arctic_a0006_EF7_ENG_0085_0.wav"></audio></td>
+        <td style="text-align: center"><audio style="width: 200px;" controls="" preload="none" src="sample/librilight/lmvc/bdl_arctic_a0006_EF7_ENG_0085_0.wav"></audio></td>
+    </tr>
+
+    <tr>
+      <td style="text-align: center"><audio style="width: 200px;" controls="" preload="none" src="sample/spk/bdl_arctic_a0006_p315_046.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 200px;" controls="" preload="none" src="sample/source/bdl_arctic_a0006_p315_046.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 200px;" controls="" preload="none" src="sample/librilight/lmvc/bdl_arctic_a0006_p315_046.wav"></audio></td>
+    <tr>
+      <td style="text-align: center"><audio style="width: 200px;" controls="" preload="none" src="sample/spk/EF4_ENG_0033_0_EF6_ENG_0079_0.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 200px;" controls="" preload="none" src="sample/source/EF4_ENG_0033_0_EF6_ENG_0079_0.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 200px;" controls="" preload="none" src="sample/librilight/lmvc/EF4_ENG_0033_0_EF6_ENG_0079_0.wav"></audio></td>
+
+    <tr>
+      <td style="text-align: center"><audio style="width: 200px;" controls="" preload="none" src="sample/spk/p225_004_bdl_arctic_a0002.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 200px;" controls="" preload="none" src="sample/source/p225_004_bdl_arctic_a0002.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 200px;" controls="" preload="none" src="sample/librilight/lmvc/p225_004_bdl_arctic_a0002.wav"></audio></td>
+    <tr>
+      <td style="text-align: center"><audio style="width: 200px;" controls="" preload="none" src="sample/spk/rms_arctic_a0019_p225_007.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 200px;" controls="" preload="none" src="sample/source/rms_arctic_a0019_p225_007.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 200px;" controls="" preload="none" src="sample/librilight/lmvc/rms_arctic_a0019_p225_007.wav"></audio></td>
+
+  </tr>
+
+  </tbody>
+</table>
+<blockquote>
+  Speaker From Internet
+</blockquote>
+<table>
+  <tbody>
+    <tr>
+      <td style="text-align: center; width: 200px;" rowspan=2><strong>Source Speech<strong></td>
+        <td style="text-align: center; width: 200px;" colspan=3><strong>Target Speaker Prompt<strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: center; width: 200px;" rowspan=1><strong>Barack Obama<strong><audio style="width: 200px;" controls="" preload="none" src="sample/librilight/more/obama.wav"></audio></td>
+        <td style="text-align: center; width: 200px;" rowspan=1><strong>Emma Watson<strong><audio style="width: 200px;" controls="" preload="none" src="sample/more/bdl_arctic_a0024_emma-read_5_02_prompt.wav"></audio></td>
+        <td style="text-align: center; width: 200px;" rowspan=1><strong>Sangonomiya Kokomi<strong><audio style="width: 200px;" controls="" preload="none" src="sample/spk/xinh_R.wav"></audio></td>
+    </tr>
+      <tr>
+        <td style="text-align: center "><audio style="width: 200px;" controls="" preload="none" src="sample/librilight/more/tom-read.wav"></audio></td>
+        <td style="text-align: center"><audio style="width: 200px;" controls="" preload="none" src="sample/librilight/more/tom-read_obama.wav"></audio></td>
+        <td style="text-align: center"><audio style="width: 200px;" controls="" preload="none" src="sample/librilight/more/tom-read_emma.wav"></audio></td>
+        <td style="text-align: center"><audio style="width: 200px;" controls="" preload="none" src="sample/librilight/more/tom-read_xinh.wav"></audio></td>
+
+  </tr>
+
+
+  </tbody>
+</table> -->
+
+
+<!-- <h2>References<a name="MD-LR"></a></h2>
+
+<ol>
+  <li>E. Casanova, J. Weber, C. D. Shulby, A. C. Junior, E. G ̈olge, and M. A. Ponti, “YourTTS: Towards zero-shot multi-speaker TTS and zero-shot voice conversion for everyone,” in International Conference on Machine Learning (ICML), 2022, pp. 2709–2720.</li>
+  <li>Z. Borsos, R. Marinier, D. Vincent, E. Kharitonov, O. Pietquin, M. Sharifi, O. Teboul, D. Grangier, M. Tagliasacchi, and N. Zeghidour, “AudioLM: a language modeling approach to audio generation,” Arxiv, 2022</li>
+</ol> -->
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com/">GitHub Pages</a>.</span>
+      </footer>
+    </section>
+</body></html>
