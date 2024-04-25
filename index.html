@@ -29,7 +29,7 @@
 <ul>
   <li><a href="#abstract">Abstract</a></li>
   <li><a href="#ID">Demo: Zero-shot Results</a></li>
-  <!-- <li><a href="#MD-SI">Evaluation</li> -->
+  <li><a href="#MD-LR">Demo: Wenetspeech4TTS Results</li>
   </li>
 
 </ul>
@@ -352,74 +352,122 @@
 
 
 
-<h2>Results (Training on a clean set of Wenetspeech) <a name="MD-LR"></a></h2>
+<h2>Wenetspeech4TTS Results<a name="MD-LR"></a></h2>
 <blockquote>
-  Work in progress. Coming soon...
+  Dataset URL: https://huggingface.co/datasets/Wenetspeech4TTS/WenetSpeech4TTS
   </blockquote>
 
-<!-- <blockquote>
-  Speaker From Testset
-</blockquote>
-<table>
-  <tbody>
-    <tr>
-        <td style="text-align: center; width: 200px;" rowspan=1><strong>Target Speaker Prompt<strong></td>
-      <td style="text-align: center; width: 200px;" rowspan=1><strong>Source Speech<strong></td>
-      <td style="text-align: center; width: 200px;"  rowspan=1><strong>LM-VC (Proposed)<strong></td>
-    </tr>
-    <tr>
-        <td style="text-align: center"><audio style="width: 200px;" controls="" preload="none" src="sample/spk/bdl_arctic_a0006_EF7_ENG_0085_0.wav"></audio></td>
-        <td style="text-align: center"><audio style="width: 200px;" controls="" preload="none" src="sample/source/bdl_arctic_a0006_EF7_ENG_0085_0.wav"></audio></td>
-        <td style="text-align: center"><audio style="width: 200px;" controls="" preload="none" src="sample/librilight/lmvc/bdl_arctic_a0006_EF7_ENG_0085_0.wav"></audio></td>
-    </tr>
 
-    <tr>
-      <td style="text-align: center"><audio style="width: 200px;" controls="" preload="none" src="sample/spk/bdl_arctic_a0006_p315_046.wav"></audio></td>
-      <td style="text-align: center"><audio style="width: 200px;" controls="" preload="none" src="sample/source/bdl_arctic_a0006_p315_046.wav"></audio></td>
-      <td style="text-align: center"><audio style="width: 200px;" controls="" preload="none" src="sample/librilight/lmvc/bdl_arctic_a0006_p315_046.wav"></audio></td>
-    <tr>
-      <td style="text-align: center"><audio style="width: 200px;" controls="" preload="none" src="sample/spk/EF4_ENG_0033_0_EF6_ENG_0079_0.wav"></audio></td>
-      <td style="text-align: center"><audio style="width: 200px;" controls="" preload="none" src="sample/source/EF4_ENG_0033_0_EF6_ENG_0079_0.wav"></audio></td>
-      <td style="text-align: center"><audio style="width: 200px;" controls="" preload="none" src="sample/librilight/lmvc/EF4_ENG_0033_0_EF6_ENG_0079_0.wav"></audio></td>
-
-    <tr>
-      <td style="text-align: center"><audio style="width: 200px;" controls="" preload="none" src="sample/spk/p225_004_bdl_arctic_a0002.wav"></audio></td>
-      <td style="text-align: center"><audio style="width: 200px;" controls="" preload="none" src="sample/source/p225_004_bdl_arctic_a0002.wav"></audio></td>
-      <td style="text-align: center"><audio style="width: 200px;" controls="" preload="none" src="sample/librilight/lmvc/p225_004_bdl_arctic_a0002.wav"></audio></td>
-    <tr>
-      <td style="text-align: center"><audio style="width: 200px;" controls="" preload="none" src="sample/spk/rms_arctic_a0019_p225_007.wav"></audio></td>
-      <td style="text-align: center"><audio style="width: 200px;" controls="" preload="none" src="sample/source/rms_arctic_a0019_p225_007.wav"></audio></td>
-      <td style="text-align: center"><audio style="width: 200px;" controls="" preload="none" src="sample/librilight/lmvc/rms_arctic_a0019_p225_007.wav"></audio></td>
-
-  </tr>
-
-  </tbody>
-</table>
-<blockquote>
-  Speaker From Internet
-</blockquote>
-<table>
-  <tbody>
-    <tr>
-      <td style="text-align: center; width: 200px;" rowspan=2><strong>Source Speech<strong></td>
-        <td style="text-align: center; width: 200px;" colspan=3><strong>Target Speaker Prompt<strong></td>
-    </tr>
-    <tr>
-      <td style="text-align: center; width: 200px;" rowspan=1><strong>Barack Obama<strong><audio style="width: 200px;" controls="" preload="none" src="sample/librilight/more/obama.wav"></audio></td>
-        <td style="text-align: center; width: 200px;" rowspan=1><strong>Emma Watson<strong><audio style="width: 200px;" controls="" preload="none" src="sample/more/bdl_arctic_a0024_emma-read_5_02_prompt.wav"></audio></td>
-        <td style="text-align: center; width: 200px;" rowspan=1><strong>Sangonomiya Kokomi<strong><audio style="width: 200px;" controls="" preload="none" src="sample/spk/xinh_R.wav"></audio></td>
-    </tr>
+  <table>
+    <tbody>
       <tr>
-        <td style="text-align: center "><audio style="width: 200px;" controls="" preload="none" src="sample/librilight/more/tom-read.wav"></audio></td>
-        <td style="text-align: center"><audio style="width: 200px;" controls="" preload="none" src="sample/librilight/more/tom-read_obama.wav"></audio></td>
-        <td style="text-align: center"><audio style="width: 200px;" controls="" preload="none" src="sample/librilight/more/tom-read_emma.wav"></audio></td>
-        <td style="text-align: center"><audio style="width: 200px;" controls="" preload="none" src="sample/librilight/more/tom-read_xinh.wav"></audio></td>
+          <td style="text-align: center; width: 300px;" rowspan=1><strong>Target Speaker<strong></td>
+            <td style="text-align: center; width: 300px;" rowspan=1><strong>Target Speaker (Codec)<strong></td>
+        <td style="text-align: center; width: 300px;" rowspan=1><strong>Source Speech<strong></td>
+        <td style="text-align: center; width: 300px;" colspan=1><strong>StreamVoice<strong></td>
+          <!-- <td style="text-align: center; width: 200px;" colspan=2><strong>Abalation<strong></td> -->
+      </tr>
+      <!-- <tr>
+        <td style="text-align: center; width: 200px;" rowspan=1><strong>YourTTS<strong></td>
+        <td style="text-align: center; width: 200px;" rowspan=1><strong>AudioLM-VC<strong></td>
+        <td style="text-align: center; width: 200px;" rowspan=1><strong>LM-VC (Proposed)<strong></td>
+        <td style="text-align: center; width: 200px;" rowspan=1><strong>w/o MPLM<strong></td>
+        <td style="text-align: center; width: 200px;" rowspan=1><strong>w/o ELM</strong><strong></td>
+      </tr> -->
+      <tr>
+          <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk/00011008_00000001.wav"></audio></td>
+          <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk-codec/00011008_00000001.wav"></audio></td>
+          <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Source/00013664_00000007.wav"></audio></td>
+          <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/wenetspeech-highmos/00011008_00000001_00013664_00000007.wav"></audio></td>
+      </tr>
 
+
+      <tr>
+        <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk/00011063_00000001.wav"></audio></td>
+        <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk-codec/00011063_00000001.wav"></audio></td>
+        <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Source/VCF1_070005.wav"></audio></td>
+        <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/wenetspeech-highmos/00011063_00000001_VCF1_070005.wav"></audio></td>
+    </tr>
+
+
+    <tr>
+      <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk/00019809_00000001.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk-codec/00019809_00000001.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Source/F22_01.wav"></audio></td>
+      <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/wenetspeech-highmos/00019809_00000001_F22_01.wav"></audio></td>
   </tr>
 
 
-  </tbody>
-</table> -->
+  <tr>
+    <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk/030_001.wav"></audio></td>
+    <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk-codec/030_001.wav"></audio></td>
+    <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Source/F14_03.wav"></audio></td>
+    <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/wenetspeech-highmos/030_001_F14_03.wav"></audio></td>
+</tr>
+
+
+
+<tr>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk/F19_01.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk-codec/F19_01.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Source/MM7_MAN_0156_0.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/wenetspeech-highmos/F19_01_MM7_MAN_0156_0.wav"></audio></td>
+</tr>
+
+
+
+<tr>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk/lzl_112001.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk-codec/lzl_112001.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Source/MF5_MAN_0160_0.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/wenetspeech-highmos/lzl_112001_MF5_MAN_0160_0.wav"></audio></td>
+</tr>
+
+
+
+<tr>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk/M06_03.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk-codec/M06_03.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Source/female-news-clean-000003.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/wenetspeech-highmos/M06_01_female-news-clean-000003.wav"></audio></td>
+</tr>
+
+<tr>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk/F19_01.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk-codec/F19_01.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Source/MM7_MAN_0156_0.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/wenetspeech-highmos/F19_01_MM7_MAN_0156_0.wav"></audio></td>
+</tr>
+
+
+<tr>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk/M06_03.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk-codec/M06_03.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Source/female-news-clean-000003.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/wenetspeech-highmos/M06_01_female-news-clean-000003.wav"></audio></td>
+</tr>
+
+
+<tr>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk/M19-01.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk-codec/M19-01.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Source/MF7_MAN_0166_0.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/wenetspeech-highmos/M19-01_MF7_MAN_0166_0.wav"></audio></td>
+</tr>
+
+
+
+<tr>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk/F19_01.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Spk-codec/F19_01.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/Source/MM7_MAN_0156_0.wav"></audio></td>
+  <td style="text-align: center"><audio style="width: 300px;" controls="" preload="none" src="sample/part2/wenetspeech-highmos/F19_01_MM7_MAN_0156_0.wav"></audio></td>
+</tr>
+
+
+</tbody>  
+</table>
+
 
 
 <!-- <h2>References<a name="MD-LR"></a></h2>
